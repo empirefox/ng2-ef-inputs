@@ -1,6 +1,6 @@
 {
   "name": "ng2-smd-input",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "experimentally markdown input",
   "main": "index.ts",
   "scripts": {
@@ -26,7 +26,6 @@
     "@angular/common": "^2.1.1",
     "@angular/core": "^2.1.1",
     "@angular/forms": "^2.1.1",
-    "fa-tool": "0.0.7",
     "markdown-it": "^8.1.0",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-block-embed": "0.0.3",
@@ -39,6 +38,7 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "ng2-amap-input": "0.0.1",
+    "ng2-fa-input": "0.0.9",
     "simplemde-ef": "0.0.6",
     "twemoji": "^2.2.0"
   }

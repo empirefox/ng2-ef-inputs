@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import { ModalModule } from 'angular2-modal';
 import { environment } from '../environments/environment';
 
 import { Ng2AmapInputModule, AMAP_KEY } from 'ng2-amap-input';
 import { Ng2ColorfulInputModule } from './ng2-colorful-input';
-import { Ng2FaInputModule, FA_NAMES_SRC } from 'ng2-fa-input';
+import { Ng2FaInputModule, FA_NAMES_SRC, FaNamesSource } from 'ng2-fa-input';
 import { Ng2QiniuImageInputModule, QiniuConfig } from './ng2-qiniu-img-input';
 import { Ng2SmdInputModule, setAmapKey } from './ng2-smd-input';
 import { Ng2TriangifyInputModule } from './ng2-trianglify-input';
@@ -22,6 +23,18 @@ import { TrianglifyInputModule } from './demo/trianglify-input/trianglify-input.
 import { AppComponent } from './app.component';
 
 setAmapKey(environment.amapKey);
+
+export function faCss(http: Http) {
+  let re = /@font-face\s*\{\s*font-family:\s*'FontAwesome'/;
+  let list = document.querySelectorAll('head>style');
+  for (let i = 0; i < list.length; ++i) {
+    let text = list[i].textContent;
+    if (re.test(text)) {
+      return Observable.of(text);
+    }
+  }
+  return Observable.of('');
+}
 
 @NgModule({
   declarations: [
@@ -48,7 +61,7 @@ setAmapKey(environment.amapKey);
   ],
   providers: [
     { provide: AMAP_KEY, useValue: environment.amapKey },
-    { provide: FA_NAMES_SRC, useValue: { url: '//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css' } },
+    { provide: FA_NAMES_SRC, useValue: <FaNamesSource>{ css: faCss } },
     {
       provide: QiniuConfig,
       useValue: {

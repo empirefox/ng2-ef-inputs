@@ -4,14 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/publishReplay';
 import { extractNamesFromCss } from 'fa-tool';
+import { FaNamesSource } from './fa-names-source';
 
 export const FA_NAMES_SRC = new OpaqueToken('fa-names');
-
-export interface FaNamesSource {
-    names?: string[];
-    css?: string;
-    url?: string;
-}
 
 @Injectable()
 export class FaNamesService {
@@ -24,9 +19,10 @@ export class FaNamesService {
     names(): Observable<string[]> {
         if (!this.names$) {
             if (this.src.names) {
-                this.names$ = Observable.of(this.src.names);
+                this.names$ = typeof this.src.names === 'function' ? this.src.names(this.http) : Observable.of(this.src.names);
             } else if (this.src.css) {
-                this.names$ = Observable.of(extractNamesFromCss(this.src.css));
+                this.names$ = typeof this.src.css === 'function' ? this.src.css(this.http).map(css => extractNamesFromCss(css)) :
+                    Observable.of(extractNamesFromCss(this.src.css));
             } else if (this.src.url) {
                 this.names$ = this.http.get(this.src.url).map(res => extractNamesFromCss(res.text())).publishReplay(1).refCount();
             } else {

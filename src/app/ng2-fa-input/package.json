@@ -1,6 +1,6 @@
 {
   "name": "ng2-fa-input",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "based on fa-tool",
   "main": "index.ts",
   "scripts": {
