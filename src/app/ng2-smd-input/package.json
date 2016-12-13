@@ -1,6 +1,6 @@
 {
   "name": "ng2-smd-input",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "experimentally markdown input",
   "main": "index.ts",
   "scripts": {

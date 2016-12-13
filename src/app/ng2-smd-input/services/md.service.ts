@@ -12,7 +12,7 @@ export class MdService {
   }
 
   render(src: string, env?: any): string {
-    return this.md.render(src, env).replace(/<a\s+href="/g, `<a luck href="`);
+    return this.md.render(src, env);
   }
 
 }
