@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4>Amap picker</h4>
+</div>
+<iframe #iframe class="iframe-map" (load)="onIframeLoad()"></iframe>
+<div class="modal-footer">
+  <template [ngIf]="amap">
+    <input class="form-control" [(ngModel)]="amap.name">
+    <input class="form-control" [(ngModel)]="amap.address">
+    <span>{{amap.location}}</span>
+    <button type="button" class="btn btn-primary" (click)="onOk()"><i class="fa fa-check"></i></button>
+  </template>
+  <button type="button" class="btn btn-default" (click)="dialog.dismiss()"><i class="fa fa-close"></i></button>
+</div>

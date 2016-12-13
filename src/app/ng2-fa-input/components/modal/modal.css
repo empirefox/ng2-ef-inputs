@@ -1,0 +1,33 @@
+.well {
+  text-align: center;
+  padding: 15px;
+}
+
+.fa-icons {
+	padding-left: 0px;
+	padding-bottom: 1px;
+	margin-bottom: 20px;
+	list-style: none outside none;
+	overflow: hidden;
+}
+
+.fa-icons li {
+	float: left;
+	padding: 0px;
+	margin: 0px -1px -1px 0px;
+	font-size: 12px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.fa-icons li i {
+	padding: 12px;
+}
+
+.fa-icons li i:hover {
+	background-color: rgba(86, 61, 124, 0.1);
+}
+
+.btns-edit {
+	text-align: center;
+}

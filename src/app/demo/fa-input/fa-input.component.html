@@ -1,0 +1,18 @@
+<fa-input [(ngModel)]="value"></fa-input>
+
+<h4>with form</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h4>ngModel</h4>
+  <fa-input formControlName="value" [(ngModel)]="value"></fa-input>
+  <h4>readonly</h4>
+  <fa-input formControlName="value" [(ngModel)]="value" [readonly]="readonly"></fa-input>
+  <h4>id</h4><label [attr.for]="id">Click to Select</label>
+  <fa-input formControlName="value" [(ngModel)]="value" [id]="id"></fa-input>
+  <br/><button class="btn btn-default" type="submit">submit</button>
+</form>
+
+<h4>service</h4>
+<button class="btn btn-default" type="button" (click)="onOpen()">open modal</button>
+
+<h4>result here</h4>
+<fa [fa]="value"></fa>

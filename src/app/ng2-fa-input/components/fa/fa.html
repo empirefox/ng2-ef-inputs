@@ -1,0 +1,5 @@
+<span *ngIf="fa?.back" [ngClass]="fa.stack()">
+  <i [ngClass]="fa.backStacked()"></i>
+  <i [ngClass]="fa.frontStacked()"></i>
+</span>
+<i *ngIf="fa&&fa.front&&!fa.back" [ngClass]="fa.front.pre"></i>

@@ -1,0 +1,5 @@
+<div class="palette-list">
+  <div *ngFor="let palette of lists" class="palette-item" (click)="onSelect(palette)">
+    <div *ngFor="let color of palette.colors" [style.background]="color"></div>
+  </div>
+</div>

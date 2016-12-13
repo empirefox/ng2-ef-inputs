@@ -1,0 +1,15 @@
+ngModel
+<smd-input [(ngModel)]="value" (fullscreen)="onFullscreen($event)" (addLink)="onAddLink($event)" (addImage)="onAddImage($event)"
+  (addVideo)="onAddVideo($event)" (addMaps)="onAddMaps($event)" (addFa)="onAddFa($event)" (addEmoji)="onAddEmoji($event)"></smd-input>
+
+<hr/>with form
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label (click)="smd.focus()">your infomation</label>
+  <smd-input #smd="input" formControlName="value" [(ngModel)]="value" (fullscreen)="onFullscreen($event)" (addLink)="onAddLink($event)"
+    (addImage)="onAddImage($event)" (addVideo)="onAddVideo($event)" (addMaps)="onAddMaps($event)" (addFa)="onAddFa($event)"
+    (addEmoji)="onAddEmoji($event)"></smd-input>
+  <button class="btn btn-default" type="submit">submit</button>
+</form>
+
+<h4>result here</h4>
+<smd-content [raw]="value"></smd-content>

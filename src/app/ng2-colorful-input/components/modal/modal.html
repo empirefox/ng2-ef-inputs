@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4>Colorful</h4>
+</div>
+<div class="modal-body" [style.backgroundImage]="preview">
+  <section class="controls">
+    <a href (click)="random()" title="Randomize the background colors" class="button randomize"><i class="icon-shuffle"></i></a>
+  </section>
+  <section class="settings">
+    <div class="box">
+      <ul>
+        <li *ngFor="let layer of generator.layers; let i=index">
+          <b>Layer {{generator.layers.length-i}}:</b> hue
+          <input min="0" step="1" type="range" [(ngModel)]="layer.hue" max="360"> saturation
+          <input min="0" step="1" type="range" [(ngModel)]="layer.saturation" max="100"> lightness
+          <input min="0" step="1" type="range" [(ngModel)]="layer.lightness" max="100">
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="dialog.dismiss()"><i class="fa fa-close"></i></button>
+  <button type="button" class="btn btn-primary" (click)="onOk()"><i class="fa fa-check"></i></button>
+</div>

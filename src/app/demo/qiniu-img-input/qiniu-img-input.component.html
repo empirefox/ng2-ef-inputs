@@ -1,0 +1,23 @@
+<h4>qiniu-icons-view</h4>
+<div class="qiniu-icons-view">
+  <qiniu-icons-view (uploaded)="onUploaded($event)" (select)="onSelect($event)" (delete)="onDeleted($event)"></qiniu-icons-view>
+</div>
+
+<qiniu-img-input [(ngModel)]="value"></qiniu-img-input>
+
+<h4>with form</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h4>ngModel</h4>
+  <qiniu-img-input formControlName="value" [(ngModel)]="value"></qiniu-img-input>
+  <h4>readonly</h4>
+  <qiniu-img-input formControlName="value" [(ngModel)]="value" [readonly]="readonly"></qiniu-img-input>
+  <h4>id</h4><label [attr.for]="id">Click to Select</label>
+  <qiniu-img-input formControlName="value" [(ngModel)]="value" [id]="id"></qiniu-img-input>
+  <br/><button class="btn btn-default" type="submit">submit</button>
+</form>
+
+<h4>service</h4>
+<button class="btn btn-default" type="button" (click)="onOpen()">open modal</button>
+
+<h4>result here</h4>
+<img [src]="value" *ngIf="value" />

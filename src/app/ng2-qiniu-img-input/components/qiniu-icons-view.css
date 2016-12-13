@@ -1,0 +1,108 @@
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes colors {
+  0% {
+    stroke: #4285F4;
+  }
+  25% {
+    stroke: #DE3E35;
+  }
+  50% {
+    stroke: #F7C223;
+  }
+  75% {
+    stroke: #1B9A59;
+  }
+  100% {
+    stroke: #4285F4;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+    stroke: red;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+    stroke: yellow;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+    stroke: green;
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+.item {
+  width: 75px;
+  height: 75px;
+  float: left;
+  margin: 0 3px 12px 0;
+  padding-bottom: 2px;
+  cursor: default;
+  border: none;
+  text-align: center;
+}
+.item.item-dz {
+  margin: 3px;
+  width: 150px;
+  height: 150px;
+}
+.spinner-container {
+  -webkit-animation: rotate 2s linear infinite;
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  width: 65px;
+  height: 65px;
+}
+.spinner-container .path {
+  stroke-dasharray: 1, 150;
+  stroke-dashoffset: 0;
+  stroke: #2196F3;
+  stroke-linecap: round;
+  -webkit-animation: dash 1.5s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+  animation: dash 1.5s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+.spinner-wrapper {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 8%;
+}
+.dropzone {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  padding: 0;
+}
+.dropzone:before {
+  content: "\f093";
+  color: #778899;
+  font-size: 40px;
+  top: 35%;
+  left: 40%;
+  font-family: FontAwesome;
+  position: absolute;
+}

@@ -1,0 +1,21 @@
+<colorful-input [(ngModel)]="value"></colorful-input>
+
+<h4>with form</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h4>ngModel</h4>
+  <colorful-input formControlName="value" [(ngModel)]="value"></colorful-input>
+  <h4>readonly</h4>
+  <colorful-input formControlName="value" [(ngModel)]="value" [readonly]="readonly"></colorful-input>
+  <h4>id</h4><label [attr.for]="id">Click to Select</label>
+  <colorful-input formControlName="value" [(ngModel)]="value" [id]="id"></colorful-input>
+  <br/><button class="btn btn-default" type="submit">submit</button>
+</form>
+
+<h4>service</h4>
+<button class="btn btn-default" type="button" (click)="onOpen()">open modal</button>
+
+<h4>result here:</h4>
+directive
+<h2 [colorful]="value">Lorem ipsum</h2>
+pipe
+<h2 [style.backgroundImage]="value|colorful">Lorem ipsum</h2>

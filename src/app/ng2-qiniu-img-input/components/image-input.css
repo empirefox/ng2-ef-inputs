@@ -1,0 +1,13 @@
+.item-icon {
+  vertical-align: middle;
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}

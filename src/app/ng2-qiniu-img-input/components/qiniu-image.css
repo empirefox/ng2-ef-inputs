@@ -1,0 +1,26 @@
+.item-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  cursor: pointer;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.item-icon:hover {
+  border: medium solid #F08080;
+}
+.btn.delete {
+  width: 48px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 0;
+  background-color: #F08080;
+}
+.btn.delete:hover {
+  background-color: #d9534f;
+}

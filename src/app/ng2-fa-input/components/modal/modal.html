@@ -1,0 +1,101 @@
+<div class="modal-header">
+  <button (click)="onDismiss()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title" [ngClass]="current.tittleType">Font Awesome Icon</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-sm-4">
+      <h5 [ngClass]="current.tittleType">size</h5>
+      <div class="btn-group">
+        <label *ngFor="let size of sizes" class="btn btn-default" [(ngModel)]="front.size" [btnRadio]="size.value" uncheckable>
+          {{size.text}}
+				</label>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <h5 [ngClass]="current.tittleType">pull</h5>
+      <div class="btn-group">
+        <label *ngFor="let pull of pulls" class="btn btn-default" [(ngModel)]="front.pull" [btnRadio]="pull.value" uncheckable>
+					<i [ngClass]="pull.pic" class="fa"></i>
+				</label>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <h5 [ngClass]="current.tittleType">direction</h5>
+      <div class="btn-group">
+        <label *ngFor="let dir of dirs" class="btn btn-default" [(ngModel)]="current.dir" [btnRadio]="dir.value" uncheckable>
+					<i [ngClass]="dir.pic" class="fa"></i>
+				</label>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <h5 [ngClass]="current.tittleType">flip</h5>
+      <div class="btn-group">
+        <label *ngFor="let flip of flips" class="btn btn-default" [(ngModel)]="current.flip" [btnRadio]="flip.value" uncheckable>
+					<i [ngClass]="flip.pic" class="fa"></i>
+				</label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h5 [ngClass]="current.tittleType">color</h5>
+      <div class="btn-group">
+        <label *ngFor="let color of colors" class="btn btn-default" [(ngModel)]="current.color" [btnRadio]="color" uncheckable>
+					<i [ngClass]="['fa-'+current.name,'text-'+color]" class="fa"></i>
+				</label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h5 [ngClass]="current.tittleType">special</h5>
+      <div class="btn-group">
+        <label class="btn btn-default" [(ngModel)]="stack.xfb" btnCheckbox>
+          <i class="fa fa-random"></i>
+				</label>
+        <label class="btn btn-default" [(ngModel)]="current.spin" btnCheckbox>
+          <i class="fa fa-refresh"></i>
+				</label>
+        <label class="btn btn-default" [(ngModel)]="current.border" btnCheckbox>
+          <i class="fa fa-square-o"></i>
+				</label>
+        <label class="btn btn-default" [(ngModel)]="current.fw" btnCheckbox>
+          <i class="fa fa-arrows-h"></i>
+				</label>
+        <label class="btn btn-default" [(ngModel)]="current.inverse" btnCheckbox>
+          <i class="fa fa-shield"></i>
+				</label>
+      </div>
+    </div>
+    <div class="col-sm-12 btns-edit">
+      <h5 [ngClass]="current.tittleType">edit(click to edit)</h5>
+      <label class="btn" [(ngModel)]="current" [btnRadio]="front" [ngClass]="front.btnType">
+        <i class="fa" [ngClass]="'fa-'+front.name"></i>
+      </label>
+      <label class="btn" [(ngModel)]="current" [btnRadio]="back" [ngClass]="back.btnType">
+        <i class="fa" [ngClass]="'fa-'+back.name"></i>
+      </label>
+    </div>
+    <div class="col-sm-12 btns-edit">
+      <h5 [ngClass]="current.tittleType">preview</h5>
+      <div class="well">
+        <div class="btn-group">
+          <label class="btn" (click)="onOk(front)" [ngClass]="front.btnType">
+            <i [ngClass]="frontPreview"></i>
+					</label>
+          <label class="btn btn-default" (click)="onOk()">
+            <fa [fa]="stack"></fa>
+          </label>
+          <label class="btn" (click)="onOk(back)" [ngClass]="back.btnType">
+            <i [ngClass]="backPreview"></i>
+					</label>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="fa-icons">
+      <li *ngFor="let name of names$|async" (click)="current.name=name">
+        <i [ngClass]="'fa-'+name" class="fa"></i>
+      </li>
+    </ul>
+  </div>
+</div>

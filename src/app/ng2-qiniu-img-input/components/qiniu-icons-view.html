@@ -1,0 +1,30 @@
+<div class="btn-group" role="group" aria-label="history">
+	<button (click)="listYears()" type="button" class="btn btn-default"><i class="fa fa-home"></i></button>
+	<button (click)="listMonths(year)" *ngIf="year" type="button" class="btn btn-default">{{year}}</button>
+	<button (click)="listImages(month)" *ngIf="month" type="button" class="btn btn-default">{{month}}</button>
+</div>
+
+<div class="row" [style.display]="!requesting && !error ? 'inline' : 'none'">
+	<div *ngIf="year&&month" class="item item-dz">
+		<div dropzone [year]="year" [month]="month" (success)="onUpSuccess($event)" (fail)="onUpFail($event)"></div>
+	</div>
+	<div class="item" *ngFor="let item of items; trackBy:trackByItems">
+		<qiniu-image *ngIf="!item.icon" (select)="onSelect($event)" (delete)="onDelete($event)" [item]="item"></qiniu-image>
+		<qiniu-folder *ngIf="item.icon" (select)="onSelect($event)" [item]="item"></qiniu-folder>
+	</div>
+</div>
+
+<div class="spinner-wrapper col-xs-12" [style.display]="requesting ? 'inline' : 'none'">
+	<svg class="spinner-container" style="width:65px;height:65px" viewBox="0 0 44 44">
+		<circle class="path" cx="22" cy="22" r="20" fill="none" stroke-width="4"></circle>
+	</svg>
+</div>
+
+<template [ngIf]="!requesting">
+	<div class="alert alert-warning" *ngIf="items.length < 1 && !error">
+		<i class="fa fa-5x fa-cart-arrow-down"></i>
+	</div>
+	<div class="alert alert-danger" *ngIf="error">
+		{{ error }}
+	</div>
+</template>

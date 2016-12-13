@@ -1,0 +1,6 @@
+<template [ngIf]="!readonly">
+  <div class="btn pre" [trianglify]="value" (click)="onRandom()"><i class="fa fa-random"></i></div>
+  <button type="button" class="btn btn-default" (click)="onEdit()" [attr.id]="id"><i class="fa fa-edit"></i></button>
+  <button type="button" class="btn btn-default" (click)="onEmpty()"><i class="fa fa-times"></i></button>
+</template>
+<div *ngIf="readonly" class="pre readonly" [trianglify]="value"></div>
