@@ -1,6 +1,6 @@
 {
   "name": "ng2-qiniu-img-input",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "based on dropzone, work with backend https://github.com/empirefox/bogger/tree/master/examples/icons-view",
   "main": "index.ts",
   "scripts": {

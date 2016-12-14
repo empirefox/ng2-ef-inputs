@@ -8,6 +8,7 @@ const noop = () => { };
 
 @Component({
   selector: 'amap-input',
+  exportAs: 'input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css'],
   providers: [

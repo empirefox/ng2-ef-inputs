@@ -9,6 +9,7 @@ const noop = () => { };
 
 @Component({
   selector: 'qiniu-img-input',
+  exportAs: 'input',
   styleUrls: ['./image-input.css'],
   templateUrl: './image-input.html',
   providers: [

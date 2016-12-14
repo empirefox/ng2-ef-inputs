@@ -8,6 +8,7 @@ const noop = () => { };
 
 @Component({
   selector: 'trianglify-input',
+  exportAs: 'input',
   styleUrls: ['./trianglify-input.css'],
   templateUrl: './trianglify-input.html',
   providers: [

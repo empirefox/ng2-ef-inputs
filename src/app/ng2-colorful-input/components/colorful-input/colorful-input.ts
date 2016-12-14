@@ -8,6 +8,7 @@ const noop = () => { };
 
 @Component({
   selector: 'colorful-input',
+  exportAs: 'input',
   styleUrls: ['./colorful-input.css'],
   templateUrl: './colorful-input.html',
   providers: [

@@ -8,6 +8,7 @@ const noop = () => { };
 
 @Component({
   selector: 'fa-input',
+  exportAs: 'input',
   styleUrls: ['./fa-input.css'],
   templateUrl: './fa-input.html',
   providers: [

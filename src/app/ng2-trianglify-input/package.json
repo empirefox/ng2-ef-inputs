@@ -1,6 +1,6 @@
 {
   "name": "ng2-trianglify-input",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "based on https://github.com/qrohlf/trianglify",
   "main": "index.ts",
   "scripts": {
