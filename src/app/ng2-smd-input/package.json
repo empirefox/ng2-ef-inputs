@@ -37,8 +37,8 @@
     "markdown-it-mark": "^2.0.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
-    "ng2-amap-input": "0.0.1",
-    "ng2-fa-input": "0.0.9",
+    "ng2-amap-input": "0.0.2",
+    "ng2-fa-input": "0.0.10",
     "simplemde-ef": "0.0.6",
     "twemoji": "^2.2.0"
   }
