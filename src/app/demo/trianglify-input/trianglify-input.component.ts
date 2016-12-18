@@ -10,7 +10,7 @@ import { TrianglifyService } from '../../ng2-trianglify-input';
 export class TrianglifyInputComponent implements OnInit {
   value = 'YlGn-30-0.3';
   readonly = true;
-  id = 'id1';
+  id = 'trianglify-id1';
   form: FormGroup;
 
   constructor(

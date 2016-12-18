@@ -1,0 +1,17 @@
+<div [svgPattern]="value">
+  <pattern-input [(ngModel)]="value"></pattern-input>
+
+  <h4>with form</h4>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h4>ngModel</h4>
+    <pattern-input formControlName="value" [(ngModel)]="value"></pattern-input>
+    <h4>readonly</h4>
+    <pattern-input formControlName="value" [(ngModel)]="value" [readonly]="readonly"></pattern-input>
+    <h4>id</h4><label [attr.for]="id">Click to Select</label>
+    <pattern-input formControlName="value" [(ngModel)]="value" [id]="id"></pattern-input>
+    <br/><button class="btn btn-default" type="submit">submit</button>
+  </form>
+
+  <h4>service</h4>
+  <button class="btn btn-default" type="button" (click)="onOpen()">open modal</button>
+</div>

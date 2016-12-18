@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <h4>Pattern</h4>
+</div>
+<div class="modal-body clearfix" [svgPattern]="pattern">
+  <ul>
+    <li *ngFor="let p of list" [svgPattern]="p" (click)="onSelect(p)"></li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="onClose()"><i class="fa fa-close"></i></button>
+  <button type="button" class="btn btn-primary" (click)="onOk()"><i class="fa fa-check"></i></button>
+</div>

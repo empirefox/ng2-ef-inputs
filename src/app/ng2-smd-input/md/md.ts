@@ -1,7 +1,5 @@
-import { markdownItPlugin } from 'fa-tool';
-
-const utils = require('markdown-it-regexp/lib/utils');
-const MarkdownIt = require('markdown-it');
+import MarkdownIt = require('markdown-it');
+const {escape} = require('markdown-it-regexp/lib/utils');
 const twemoji = require('twemoji');
 
 const options = {
@@ -44,7 +42,7 @@ const containerOptions = {
     if (tokens[idx].nesting === 1) {
       // opening tag
       let name = alerts[tokens[idx].info.trim().length - 1];
-      return '<div class="alert alert-' + utils.escape(name) + '" role="alert">\n';
+      return '<div class="alert alert-' + escape(name) + '" role="alert">\n';
     } else {
       // closing tag
       return '</div>\n';
@@ -65,7 +63,7 @@ const codeInlineRule = (tokens, idx, opts, env, slf) => {
     token.attrPush(['class', `label label-${label}`]);
   }
 
-  return `<${tag} ${slf.renderAttrs(token)}>${utils.escape(token.content)}</${tag}>`;
+  return `<${tag} ${slf.renderAttrs(token)}>${escape(token.content)}</${tag}>`;
 };
 
 export function createMd(amapKey?: string) {
@@ -80,11 +78,11 @@ export function createMd(amapKey?: string) {
     use(require('markdown-it-mark')).
     use(require('markdown-it-sub')).
     use(require('markdown-it-sup')).
-    use(markdownItPlugin);
+    use(require('fa-tool/dist/markdown-it-plugin'));
 
-  md.renderer.rules.emoji = (token, idx) => twemoji.parse(token[idx].content);
-  md.renderer.rules.code_inline = codeInlineRule;
-  md.renderer.rules.table_open = () => '<table class="table table-hover table-inverse table-striped">\n';
+  md.renderer.rules['emoji'] = (token, idx) => twemoji.parse(token[idx].content);
+  md.renderer.rules['code_inline'] = codeInlineRule;
+  md.renderer.rules['table_open'] = () => '<table class="table table-hover table-inverse table-striped">\n';
 
   return md;
 }

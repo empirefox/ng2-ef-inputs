@@ -1,7 +1,7 @@
 {
-  "name": "ng2-fa-input",
-  "version": "0.0.11",
-  "description": "based on fa-tool",
+  "name": "ng2-pattern-input",
+  "version": "0.0.1",
+  "description": "based on https://github.com/progers/Patterns-Gallery",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,8 @@
   "keywords": [
     "angular2",
     "input",
-    "fontawesome"
+    "svg",
+    "pattern"
   ],
   "author": "https://github.com/empirefox",
   "license": "MIT",
@@ -25,10 +26,6 @@
     "@angular/common": "^2.1.1",
     "@angular/core": "^2.1.1",
     "@angular/forms": "^2.1.1",
-    "@angular/http": "^2.1.1",
-    "angular2-modal": "^2.0.2",
-    "fa-tool": "0.0.8",
-    "ng2-bootstrap": "^1.1.16",
-    "rxjs": "*"
+    "angular2-modal": "^2.0.2"
   }
 }
