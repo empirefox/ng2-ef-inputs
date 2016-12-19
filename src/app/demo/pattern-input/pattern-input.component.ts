@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { PatternService } from '../../ng2-pattern-input';
+import { PatternService } from 'ng2-pattern-input';
 
 @Component({
   selector: 'app-pattern-input',

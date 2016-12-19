@@ -7,14 +7,15 @@ import { ModalModule } from 'angular2-modal';
 import { environment } from '../environments/environment';
 
 import { Ng2AmapInputModule, AMAP_KEY } from 'ng2-amap-input';
-import { Ng2ColorfulInputModule } from './ng2-colorful-input';
+import { Ng2ColorfulInputModule } from 'ng2-colorful-input';
 import { Ng2FaInputModule, FA_NAMES_SRC, FaNamesSource } from 'ng2-fa-input';
-import { Ng2SvgPatternInputModule, SVG_PATTERNS } from './ng2-pattern-input';
-import { Ng2QiniuImageInputModule, QiniuConfig } from './ng2-qiniu-img-input';
+import { Ng2SvgPatternInputModule, SVG_PATTERNS } from 'ng2-pattern-input';
+import { Ng2QiniuImageInputModule, QiniuConfig } from 'ng2-qiniu-img-input';
 import { Ng2SmdInputModule, setAmapKey } from './ng2-smd-input';
-import { Ng2TriangifyInputModule } from './ng2-trianglify-input';
+import { Ng2TriangifyInputModule } from 'ng2-trianglify-input';
 
 import { AmapInputModule } from './demo/amap-input/amap-input.module';
+import { BgInputModule } from './demo/bg-input/bg-input.module';
 import { ColorfulInputModule } from './demo/colorful-input/colorful-input.module';
 import { FaInputModule } from './demo/fa-input/fa-input.module';
 import { PatternInputModule } from './demo/pattern-input/pattern-input.module';
@@ -23,7 +24,7 @@ import { SmdInputModule } from './demo/smd-input/smd-input.module';
 import { TrianglifyInputModule } from './demo/trianglify-input/trianglify-input.module';
 
 import { AppComponent } from './app.component';
-import { value as patterns } from './ng2-pattern-input/patterns';
+import { value as patterns } from 'ng2-pattern-input/patterns';
 
 setAmapKey(environment.amapKey);
 
@@ -57,6 +58,7 @@ export function faCss(http: Http) {
     Ng2TriangifyInputModule.forRoot(),
 
     AmapInputModule,
+    BgInputModule,
     ColorfulInputModule,
     FaInputModule,
     PatternInputModule,

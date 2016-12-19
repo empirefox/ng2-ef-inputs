@@ -1,0 +1,11 @@
+<i *ngFor="let typ of types" (click)="setType(typ)" [class.text-danger]="current===typ" class="typ fa fa-fw" [ngClass]="'fa-'+typ.fa"></i>
+<div [ngSwitch]="current">
+  <template [ngSwitchCase]="types[0]">
+    <input [(ngModel)]="color" [attr.readonly]="readonly" type="color" />
+    <button *ngIf="!readonly" type="button" class="btn btn-default" (click)="color=''"><i class="fa fa-times"></i></button>
+  </template>
+  <colorful-input *ngSwitchCase="types[1]" [(ngModel)]="colorful" [readonly]="readonly"></colorful-input>
+  <trianglify-input *ngSwitchCase="types[2]" [(ngModel)]="trianglify" [readonly]="readonly"></trianglify-input>
+  <pattern-input *ngSwitchCase="types[3]" [(ngModel)]="pattern" [readonly]="readonly"></pattern-input>
+  <qiniu-img-input *ngSwitchCase="types[4]" [(ngModel)]="img" [readonly]="readonly"></qiniu-img-input>
+</div>

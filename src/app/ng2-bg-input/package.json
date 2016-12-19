@@ -1,7 +1,7 @@
 {
-  "name": "ng2-pattern-input",
+  "name": "ng2-bg-input",
   "version": "0.0.2",
-  "description": "based on https://github.com/progers/Patterns-Gallery",
+  "description": "5 kinds of background",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,8 +13,7 @@
   "keywords": [
     "angular2",
     "input",
-    "svg",
-    "pattern"
+    "background"
   ],
   "author": "https://github.com/empirefox",
   "license": "MIT",
@@ -26,6 +25,9 @@
     "@angular/common": "^2.1.1",
     "@angular/core": "^2.1.1",
     "@angular/forms": "^2.1.1",
-    "angular2-modal": "^2.0.2"
+    "ng2-colorful-input": "0.0.8",
+    "ng2-pattern-input": "0.0.2",
+    "ng2-qiniu-img-input": "0.0.9",
+    "ng2-trianglify-input": "0.0.11"
   }
 }

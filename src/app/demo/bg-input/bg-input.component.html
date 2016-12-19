@@ -1,0 +1,12 @@
+<div [bg]="value">
+  <bg-input [(ngModel)]="value"></bg-input>
+
+  <h4>with form</h4>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h4>ngModel</h4>
+    <bg-input formControlName="value" [(ngModel)]="value"></bg-input>
+    <h4>readonly</h4>
+    <bg-input formControlName="value" [(ngModel)]="value" [readonly]="readonly"></bg-input>
+    <br/><button class="btn btn-default" type="submit">submit</button>
+  </form>
+</div>
