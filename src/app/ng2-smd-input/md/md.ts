@@ -1,4 +1,4 @@
-import MarkdownIt = require('markdown-it');
+import * as MarkdownIt from 'markdown-it';
 const {escape} = require('markdown-it-regexp/lib/utils');
 const twemoji = require('twemoji');
 
