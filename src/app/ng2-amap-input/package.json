@@ -1,6 +1,6 @@
 {
   "name": "ng2-amap-input",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "angular2 input for http://lbs.amap.com/api/lightmap/guide/picker",
   "main": "index.ts",
   "scripts": {

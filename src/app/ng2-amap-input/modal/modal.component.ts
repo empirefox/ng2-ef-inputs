@@ -61,7 +61,7 @@ export class AmapPickerModalComponent implements ModalComponent<AmapPickerModalD
         if (this.sub) {
           this.sub.unsubscribe();
         }
-        this.source = Observable.fromEvent(window, 'message');
+        this.source = Observable.fromEvent<MessageEvent>(window, 'message');
         this.sub = this.source.subscribe(this.receiveMessage.bind(this));
       }, 500);
     }
