@@ -1,6 +1,6 @@
 {
   "name": "ng2-fa-input",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "based on fa-tool",
   "main": "index.ts",
   "scripts": {
@@ -28,7 +28,7 @@
     "@angular/http": "^2.1.1",
     "angular2-modal": "^2.0.2",
     "fa-tool": "0.0.8",
-    "ng2-bootstrap": "^1.1.16",
+    "ng2-bootstrap": "*",
     "rxjs": "*"
   }
 }
