@@ -1,28 +1,42 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DialogRef, ModalComponent } from 'angular2-modal';
+import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 
-import { QiniuConfig } from '../services/qiniu-config';
+import { Item } from '../services/item';
+import { Qiniu, QiniuService } from '../services/qiniu.service';
+
+export class QiniuWindowData extends BSModalContext {
+  qiniu: string;
+  prefix: string;
+}
 
 @Component({
   styleUrls: ['./modal.css'],
   templateUrl: './modal.html',
 })
-export class QiniuIconsWindowComponent implements ModalComponent<any> {
+export class QiniuIconsWindowComponent implements OnInit, ModalComponent<QiniuWindowData> {
+  qiniu: Qiniu;
+  prefix: string;
 
   constructor(
-    public dialog: DialogRef<any>,
-    private qiniuConfig: QiniuConfig) { }
+    public dialog: DialogRef<QiniuWindowData>,
+    private qiniuService: QiniuService) { }
 
-  onUploaded(key: string) {
-    this.dialog.close(`${this.qiniuConfig.bucketDomain}${key}`);
+  ngOnInit() {
+    this.qiniu = this.qiniuService.get(this.dialog.context.qiniu);
+    this.prefix = this.dialog.context.prefix;
   }
 
-  onSelect(key: string) {
-    this.dialog.close(`${this.qiniuConfig.bucketDomain}${key}`);
+  onUploaded(item: Item) {
+    this.dialog.close(item);
   }
 
-  onDeleted(key: string) {
-    console.log('onDeleted', key);
+  onSelect(item: Item) {
+    this.dialog.close(item);
+  }
+
+  onDeleted(item: Item) {
+    console.log('onDeleted', item);
   }
 
 }

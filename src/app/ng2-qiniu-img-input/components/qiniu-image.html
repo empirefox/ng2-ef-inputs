@@ -1,4 +1,4 @@
 <div class="item-icon" [style.backgroundImage]="thumbnail" (click)="onSelect(item)"></div>
-<button class="btn delete btn-danger btn-xs btn-block" role="button" (click)="onDelete(item)">
+<button *ngIf="canDelete" class="btn delete btn-danger btn-xs btn-block" role="button" (click)="onDelete(item)">
   <i class="fa fa-trash-o"></i>
 </button>

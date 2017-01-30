@@ -4,12 +4,12 @@
 	<button (click)="listImages(month)" *ngIf="month" type="button" class="btn btn-default">{{month}}</button>
 </div>
 
-<div class="row" [style.display]="!requesting && !error ? 'inline' : 'none'">
-	<div *ngIf="year&&month" class="item item-dz">
-		<div dropzone [year]="year" [month]="month" (success)="onUpSuccess($event)" (fail)="onUpFail($event)"></div>
+<div class="row" [style.display]="!requesting ? 'inline' : 'none'">
+	<div *ngIf="year&&month&&canUpload" class="item item-dz">
+		<div dropzone [qiniu]="qiniu" [prefix]="prefix" [year]="year" [month]="month" (success)="onUpSuccess($event)" (fail)="onUpFail($event)"></div>
 	</div>
 	<div class="item" *ngFor="let item of items; trackBy:trackByItems">
-		<qiniu-image *ngIf="!item.icon" (select)="onSelect($event)" (delete)="onDelete($event)" [item]="item"></qiniu-image>
+		<qiniu-image *ngIf="!item.icon" (select)="onSelect($event)" (delete)="onDelete($event)" [qiniu]="qiniu" [item]="item"></qiniu-image>
 		<qiniu-folder *ngIf="item.icon" (select)="onSelect($event)" [item]="item"></qiniu-folder>
 	</div>
 </div>

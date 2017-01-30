@@ -1,7 +1,7 @@
 import { Component, Output, Input, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
-import { QiniuService } from '../services/qiniu.service';
+import { Qiniu, QiniuService } from '../services/qiniu.service';
 import { Item } from '../services/item';
 
 @Component({
@@ -11,26 +11,29 @@ import { Item } from '../services/item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QiniuImageComponent {
+  @Input() qiniu: Qiniu;
 
   @Output() select: EventEmitter<Item> = new EventEmitter<Item>();
-  @Output() public delete: EventEmitter<Item> = new EventEmitter<Item>();
+  @Output() delete: EventEmitter<Item> = new EventEmitter<Item>();
 
   thumbnail: SafeStyle;
 
   private _item: Item;
 
-  constructor(
-    private sanitizer: DomSanitizer,
-    private qiniuService: QiniuService) { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   @Input() get item(): Item {
     return this._item;
   }
 
   set item(item: Item) {
-    let unsafe = `url('${this.qiniuService.srcThumbnail(item)}')`;
+    let unsafe = `url('${this.qiniu.config.styledUrl(item.key, item.hash)}')`;
     this.thumbnail = this.sanitizer.bypassSecurityTrustStyle(unsafe);
     this._item = item;
+  }
+
+  get canDelete() {
+    return this.qiniu.config.canDelete;
   }
 
   onSelect(item: Item) {

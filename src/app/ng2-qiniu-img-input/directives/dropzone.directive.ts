@@ -1,7 +1,8 @@
 import { Directive, Input, Output, ElementRef, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 
-import { QiniuService } from '../services/qiniu.service';
+import { Qiniu } from '../services/qiniu.service';
 import { Item } from '../services/item';
+import { Uptoken } from '../services/uptoken';
 
 const Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;
@@ -14,7 +15,9 @@ Dropzone.autoDiscover = false;
   }
 })
 export class DropzoneDirective implements OnInit, OnDestroy {
-  @Input('dropzone') options: any;
+  @Input() qiniu: Qiniu;
+  @Input() dropzone: any;
+  @Input() prefix: string = ''; // s/:siteid/
   @Input() year: string;
   @Input() month: string;
 
@@ -22,28 +25,32 @@ export class DropzoneDirective implements OnInit, OnDestroy {
   @Output() fail: EventEmitter<any> = new EventEmitter<any>();
 
   // dropzone: Dropzone;
-  dropzone: any;
-  uptoken: string;
-  uphost: string;
+  instance: any;
+  uptoken: Uptoken;
 
-  constructor(
-    private elementRef: ElementRef,
-    private qiniuService: QiniuService) { }
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
-    this.options = this.options || {
-      url: _ => this.uphost,
-      acceptedFiles: 'image/*',
-      parallelUploads: 1,
-      maxFilesize: 10,
-      addRemoveLinks: true,
-    };
+    this.dropzone = Object.assign(
+      {
+        acceptedFiles: 'image/*',
+        addRemoveLinks: true,
+        maxFilesize: 10,
+      },
+      this.dropzone,
+      {
+        url: _ => this.uptoken.uphost,
+        parallelUploads: 1,
+      },
+    );
 
-    this.options.accept = (file: File, done: (error?: string | Error) => void) => {
-      this.qiniuService.uptoken().subscribe(
+    this.dropzone.accept = (file: File, done: (error?: string | Error) => void) => {
+      let name = /^[-\w\.]+$/.test(file.name) ? file.name : this.uniqueName();
+      let key = `${this.prefix}${this.year}/${this.month}/${name}`;
+      this.qiniu.uptoken(key).subscribe(
         uptoken => {
-          this.uptoken = uptoken.token;
-          this.uphost = uptoken.uphost;
+          file['qn_key'] = uptoken.key || key;
+          this.uptoken = uptoken;
           done();
         },
         err => {
@@ -53,24 +60,23 @@ export class DropzoneDirective implements OnInit, OnDestroy {
       );
     };
 
-    this.dropzone = new Dropzone(this.elementRef.nativeElement, this.options);
+    this.instance = new Dropzone(this.elementRef.nativeElement, this.dropzone);
 
-    this.dropzone.on('success', (file: File, res: Item) => {
-      this.dropzone.removeAllFiles();
+    this.instance.on('success', (file: File, res: Item) => {
+      this.instance.removeAllFiles();
       this.success.next(res);
     });
 
-    this.dropzone.on('sending', (file: File, xhr: XMLHttpRequest, formData: FormData) => {
-      formData.append('token', this.uptoken);
-      let name = /^[-\w\.]+$/.test(file.name) ? file.name : this.uniqueName();
-      formData.append('key', `${this.year}/${this.month}/${name}`);
+    this.instance.on('sending', (file: File, xhr: XMLHttpRequest, formData: FormData) => {
+      formData.append('token', this.uptoken.token);
+      formData.append('key', file['qn_key']);
     });
 
   }
 
   ngOnDestroy() {
-    if (this.dropzone) {
-      this.dropzone.destroy();
+    if (this.instance) {
+      this.instance.destroy();
     }
   }
 

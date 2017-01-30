@@ -1,23 +1,21 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Response } from '@angular/http';
 
 import { Item } from '../services/item';
-import { QiniuService, YEAR_ITEMS, MONTH_ITEMS } from '../services/qiniu.service';
-import { QiniuConfig } from '../services/qiniu-config';
-import { QiniuImageComponent } from './qiniu-image.component';
-import { QiniuFolderComponent } from './qiniu-folder.component';
-import { DropzoneDirective } from '../directives/dropzone.directive';
+import { Qiniu, YEAR_ITEMS, MONTH_ITEMS } from '../services/qiniu.service';
 
 @Component({
   selector: 'qiniu-icons-view',
   templateUrl: './qiniu-icons-view.html',
   styleUrls: ['./qiniu-icons-view.css'],
 })
-export class QiniuIconsViewComponent implements OnInit {
+export class QiniuIconsViewComponent {
+  @Input() qiniu: Qiniu;
+  @Input() prefix: string = ''; // s/:siteid/
 
-  @Output() public select: EventEmitter<string> = new EventEmitter<string>();
-  @Output() public delete: EventEmitter<string> = new EventEmitter<string>();
-  @Output() public uploaded: EventEmitter<string> = new EventEmitter<string>();
+  @Output() select = new EventEmitter<Item>();
+  @Output() delete = new EventEmitter<Item>();
+  @Output() uploaded = new EventEmitter<Item>();
 
   items: Array<Item> = YEAR_ITEMS;
 
@@ -26,12 +24,9 @@ export class QiniuIconsViewComponent implements OnInit {
   private year: string;
   private month: string;
 
-  constructor(
-    private elementRef: ElementRef,
-    private qiniu: QiniuConfig,
-    private qiniuService: QiniuService) { }
-
-  ngOnInit() { }
+  get canUpload() {
+    return this.qiniu.config.canUpload;
+  }
 
   listYears() {
     this.error = '';
@@ -53,15 +48,20 @@ export class QiniuIconsViewComponent implements OnInit {
     if (!this.month || !this.year) {
       return;
     }
-    this.requesting = true;
-    this.qiniuService.list(`${this.year}/${this.month}/`).subscribe(items => {
-      this.items = items;
+    if (this.qiniu.config.canList) {
+      this.requesting = true;
+      this.qiniu.list(`${this.prefix}${this.year}/${this.month}/`).subscribe(items => {
+        this.items = items;
+        this.requesting = false;
+      }, this.rxOnError.bind(this));
+    } else {
+      this.items = [];
       this.requesting = false;
-    }, this.rxOnError.bind(this));
+    }
   }
 
   selectItem(item: Item) {
-    this.select.next(item.key);
+    this.select.next(item);
   }
 
   rxOnError(err: any) {
@@ -78,7 +78,7 @@ export class QiniuIconsViewComponent implements OnInit {
   onUpSuccess(res: Item) {
     this.error = '';
     this.items.unshift(res);
-    this.uploaded.next(res.key);
+    this.uploaded.next(res);
   }
 
   onUpFail(err) {
@@ -102,12 +102,12 @@ export class QiniuIconsViewComponent implements OnInit {
   onDelete(item: Item) {
     this.error = '';
     this.requesting = true;
-    this.qiniuService.delete(item.key).subscribe(_ => {
+    this.qiniu.delete(item.key).subscribe(_ => {
       let i = this.items.indexOf(item);
       if (i > -1) {
         this.items.splice(i, 1);
       }
-      this.delete.next(item.key);
+      this.delete.next(item);
       this.requesting = false;
     }, this.rxOnError.bind(this));
   }

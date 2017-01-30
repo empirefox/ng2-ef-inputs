@@ -2,7 +2,7 @@
 	<h4>Qiniu Image</h4>
 </div>
 <div class="modal-body">
-	<qiniu-icons-view (uploaded)="onUploaded($event)" (select)="onSelect($event)" (delete)="onDeleted($event)"></qiniu-icons-view>
+	<qiniu-icons-view [qiniu]="qiniu" [prefix]="prefix" (uploaded)="onUploaded($event)" (select)="onSelect($event)" (delete)="onDeleted($event)"></qiniu-icons-view>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-primary" (click)="dialog.dismiss()"><i class="fa fa-times"></i></button>

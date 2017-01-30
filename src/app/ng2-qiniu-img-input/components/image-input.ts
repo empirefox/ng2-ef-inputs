@@ -2,7 +2,9 @@ import { Component, Input, Provider, forwardRef } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { QiniuConfig } from '../services/qiniu-config';
+import { Config } from '../services/qiniu-config';
+import { Item } from '../services/item';
+import { Qiniu } from '../services/qiniu.service';
 import { QiniuImageService } from '../services/qiniu-image.service';
 
 const noop = () => { };
@@ -26,13 +28,16 @@ export class QiniuImageInputComponent implements ControlValueAccessor {
   @Input() readonly: boolean;
   @Input() id: string;
 
+  @Input() qiniu: Qiniu;
+  @Input() prefix: string = ''; // s/:siteid/
+  private qiniuConfig: Config;
+
   private onTouched: () => void = noop;
   private onChange: (_: any) => void = noop;
 
   constructor(
     private sanitizer: DomSanitizer,
-    public qiniuImageService: QiniuImageService,
-    private qiniuConfig: QiniuConfig) { }
+    public qiniuImageService: QiniuImageService) { }
 
   get value(): any { return this._value; };
   set value(v: any) {
@@ -50,8 +55,13 @@ export class QiniuImageInputComponent implements ControlValueAccessor {
     return this.sanitizer.bypassSecurityTrustStyle(`url('${this.value}${thumbnailStyle}')`);
   }
 
+  ngOnInit() {
+    this.qiniuConfig = this.qiniu.config;
+  }
+
   onEdit() {
-    this.qiniuImageService.open().then(dialog => dialog.result.then((src: string) => this.value = src));
+    this.qiniuImageService.open(this.qiniu.config.name, this.prefix)
+      .then(dialog => dialog.result.then((item: Item) => this.value = this.qiniuConfig.url(item.key, item.hash)));
   }
 
   onEmpty() {

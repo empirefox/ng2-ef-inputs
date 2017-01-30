@@ -14,11 +14,13 @@ import {
   QiniuIconsWindowComponent,
   QiniuImageInputComponent,
 } from './components';
+import { QiniuConfigService } from './services/qiniu-config';
 import { QiniuService } from './services/qiniu.service';
 import { QiniuImageService } from './services/qiniu-image.service';
 
 // for manual imports
 export * from './components';
+export * from './services/item';
 export * from './services/qiniu.service';
 export * from './services/qiniu-image.service';
 export * from './services/qiniu-config';
@@ -58,6 +60,7 @@ export class Ng2QiniuImageInputModule {
     return {
       ngModule: Ng2QiniuImageInputModule,
       providers: [
+        QiniuConfigService,
         QiniuService,
         QiniuImageService,
         { provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: [QiniuIconsWindowComponent], multi: true },

@@ -1,6 +1,6 @@
 {
   "name": "ng2-fa-input",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "based on fa-tool",
   "main": "index.ts",
   "scripts": {
@@ -11,6 +11,7 @@
     "url": "git+https://github.com/empirefox/ng2-ef-inputs.git"
   },
   "keywords": [
+    "ng2-ef-inputs",
     "angular2",
     "input",
     "fontawesome"
