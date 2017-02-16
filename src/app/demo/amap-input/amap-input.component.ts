@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { AmapService } from 'ng2-amap-input';
+import { AmapService } from '../../ng2-amap-input';
 
 @Component({
   selector: 'app-amap-input',

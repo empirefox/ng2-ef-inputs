@@ -1,10 +1,10 @@
-import { Ng2SmdInputPage } from './app.po';
+import { Ng2EfInputsPage } from './app.po';
 
 describe('ng2-ef-inputs App', function() {
-  let page: Ng2SmdInputPage;
+  let page: Ng2EfInputsPage;
 
   beforeEach(() => {
-    page = new Ng2SmdInputPage();
+    page = new Ng2EfInputsPage();
   });
 
   it('should display message saying app works', () => {

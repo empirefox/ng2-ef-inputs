@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { AMAP_KEY } from 'ng2-amap-input/amap/tokens';
+import { AMAP_KEY } from '../../ng2-amap-input/amap/tokens';
 
 import { createMd } from '../md';
 

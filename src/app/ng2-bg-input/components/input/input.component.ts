@@ -1,7 +1,7 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { Bg, parse } from '../../services';
+import { Bg, parseBg } from '../../services';
 
 export interface BgType {
   name: string;
@@ -55,7 +55,7 @@ export class BgInputComponent implements ControlValueAccessor {
   }
 
   set value(v: string) {
-    let bg = parse(v);
+    let bg = parseBg(v);
     v = bg && bg[bg.typ];
     v = v ? `bg-${bg.typ}:${v}` : '';
     if (v !== this.value) {

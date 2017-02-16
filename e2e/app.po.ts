@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class Ng2SmdInputPage {
+export class Ng2EfInputsPage {
   navigateTo() {
     return browser.get('/');
   }

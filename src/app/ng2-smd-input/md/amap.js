@@ -1,5 +1,4 @@
-import { parse, toUrl } from 'ng2-amap-input';
-
+const {parseAmap, toUrl} = require('../../ng2-amap-input');
 const VideoServiceBase = require('markdown-it-block-embed/lib/services/VideoServiceBase');
 
 // @[amap](102.99517,29.98106,my place,my address)
@@ -20,7 +19,7 @@ class AmapService extends VideoServiceBase {
   }
 
   getVideoUrl(videoID) {
-    return toUrl(parse(`amap:${videoID}`), this.options.key());
+    return toUrl(parseAmap(`amap:${videoID}`), this.options.key());
   }
 
 }

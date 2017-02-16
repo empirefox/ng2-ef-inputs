@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { StackFa } from 'fa-tool';
-import { FaSelectService } from 'ng2-fa-input';
+import { FaSelectService } from '../../ng2-fa-input';
 
 @Component({
   selector: 'app-fa-input',

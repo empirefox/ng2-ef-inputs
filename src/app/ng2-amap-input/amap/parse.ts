@@ -2,7 +2,7 @@ import { AmapLocation } from './location';
 
 const parseRegexp = /^amap:(-?\d*\.?\d+,-?\d*\.?\d+),([^,]+)(?:,(.+))?$/;
 
-export function parse(s: string): AmapLocation {
+export function parseAmap(s: string): AmapLocation {
   let match: RegExpMatchArray;
   if (s && (match = s.match(parseRegexp))) {
     return {
@@ -13,7 +13,7 @@ export function parse(s: string): AmapLocation {
   }
 }
 
-export function stringify(amap: AmapLocation): string {
+export function stringifyAmap(amap: AmapLocation): string {
   if (amap && amap.address && amap.name) {
     let name = amap.address ? `${amap.name},${amap.address}` : amap.name;
     return `amap:${amap.location},${name}`;

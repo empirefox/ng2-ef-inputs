@@ -8,7 +8,7 @@ import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 
 const qs = require('querystringify');
 
-import { AmapPickerOptions, AmapLocation, AMAP_PICKER_OPTIONS, AMAP_KEY, parse, stringify } from '../amap';
+import { AmapPickerOptions, AmapLocation, AMAP_PICKER_OPTIONS, AMAP_KEY, parseAmap, stringifyAmap } from '../amap';
 
 export class AmapPickerModalData extends BSModalContext {
   public amap: AmapLocation | string;
@@ -37,7 +37,7 @@ export class AmapPickerModalComponent implements ModalComponent<AmapPickerModalD
 
   ngOnInit() {
     let amap = this.dialog.context.amap;
-    this.amap = typeof amap === 'string' ? parse(amap) : amap;
+    this.amap = typeof amap === 'string' ? parseAmap(amap) : amap;
     let center = this.amap && this.amap.location && { center: this.amap.location };
     this.options = Object.assign({ key: this.key }, this.options, center);
     let query = qs.stringify(this.options, true);
@@ -68,7 +68,7 @@ export class AmapPickerModalComponent implements ModalComponent<AmapPickerModalD
   }
 
   onOk() {
-    this.dialog.close(stringify(this.amap));
+    this.dialog.close(stringifyAmap(this.amap));
   }
 
   receiveMessage(event: MessageEvent) {

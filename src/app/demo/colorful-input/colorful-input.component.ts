@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { ColorfulService } from 'ng2-colorful-input';
+import { ColorfulService } from '../../ng2-colorful-input';
 
 @Component({
   selector: 'app-colorful-input',

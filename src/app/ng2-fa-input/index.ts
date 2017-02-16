@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
-import { ButtonsModule } from 'ng2-bootstrap/components/buttons';
+import { ButtonsModule } from 'ng2-bootstrap/buttons';
 
 // for standard export at bottom
 import { FaWindowComponent, FaComponent, FaInputComponent } from './components';

@@ -4,7 +4,7 @@ import { Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 import { StackFa } from 'fa-tool';
-import { FaSelectService } from 'ng2-fa-input';
+import { FaSelectService } from '../../ng2-fa-input';
 import { MdeCallback } from '../../ng2-smd-input';
 
 @Component({

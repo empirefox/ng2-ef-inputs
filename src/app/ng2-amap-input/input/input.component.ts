@@ -1,7 +1,7 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { parse } from '../amap';
+import { parseAmap } from '../amap';
 import { AmapService } from '../services/amap.service';
 
 const noop = () => { };
@@ -39,7 +39,7 @@ export class Ng2AmapInputComponent implements ControlValueAccessor {
   }
 
   get name(): string {
-    let amap = parse(this.value);
+    let amap = parseAmap(this.value);
     return amap ? amap.name : '';
   }
 

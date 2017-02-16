@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { Item, QiniuImageService, Qiniu, QiniuService } from 'ng2-qiniu-img-input';
+import { Item, QiniuImageService, Qiniu, QiniuService } from '../../ng2-qiniu-img-input';
 
 @Component({
   selector: 'app-qiniu-img-input',

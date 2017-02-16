@@ -1,2 +1,2 @@
 export { Bg } from './bg';
-export { parse } from './parse';
+export { parseBg } from './parse';
