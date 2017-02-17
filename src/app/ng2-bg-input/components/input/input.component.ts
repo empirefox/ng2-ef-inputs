@@ -1,6 +1,7 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { Qiniu } from '../../../ng2-qiniu-img-input';
 import { Bg, parseBg } from '../../services';
 
 export interface BgType {
@@ -37,6 +38,8 @@ export class BgInputComponent implements ControlValueAccessor {
   @Input() readonly: boolean;
   @Input() id: string;
 
+  @Input() qiniu: Qiniu;
+  @Input() prefix = ''; // s/:siteid/
   types = BgTypes;
   current: BgType;
 

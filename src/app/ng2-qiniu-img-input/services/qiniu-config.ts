@@ -47,7 +47,6 @@ export interface QiniuConfig {
   name: string;
   bucketDomain: string;
   thumbnailStyle: string; // '-48x48'
-  base64?: boolean;
   cacheUptoken?: boolean;
 
   // should not call this if not set
@@ -67,7 +66,6 @@ export class Config {
   name: string;
   bucketDomain: string;
   thumbnailStyle: string;
-  base64: boolean;
   cacheUptoken: boolean;
 
   uptokenUrl: (key?: string) => string;
@@ -85,7 +83,6 @@ export class Config {
     this.name = config.name;
     this.bucketDomain = config.bucketDomain;
     this.thumbnailStyle = config.thumbnailStyle || '';
-    this.base64 = config.base64;
     this.cacheUptoken = config.cacheUptoken;
     this.uptokenUrl = config.uptokenUrl;
     this.listUrl = config.listUrl;

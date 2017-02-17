@@ -7,5 +7,7 @@
   <colorful-input *ngSwitchCase="types[1]" [(ngModel)]="colorful" [readonly]="readonly"></colorful-input>
   <trianglify-input *ngSwitchCase="types[2]" [(ngModel)]="trianglify" [readonly]="readonly"></trianglify-input>
   <pattern-input *ngSwitchCase="types[3]" [(ngModel)]="pattern" [readonly]="readonly"></pattern-input>
-  <qiniu-img-input *ngSwitchCase="types[4]" [(ngModel)]="img" [readonly]="readonly"></qiniu-img-input>
+  <template [ngIf]="qiniu">
+    <qiniu-img-input *ngSwitchCase="types[4]" [(ngModel)]="img" [readonly]="readonly" [qiniu]="qiniu" [prefix]="prefix"></qiniu-img-input>
+  </template>
 </div>

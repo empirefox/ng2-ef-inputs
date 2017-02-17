@@ -83,7 +83,6 @@ export function profileUptokenUrl(key: string) { return `http://127.0.0.1:9999/q
           name: 'site',
           bucketDomain: 'http://7xtjjx.com2.z0.glb.qiniucdn.com/',
           thumbnailStyle: '-48x48',
-          base64: true,
           uptokenUrl,
           listUrl,
           deleteUrl,
