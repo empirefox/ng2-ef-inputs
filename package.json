@@ -1,10 +1,9 @@
 {
   "name": "ng2-ef-inputs",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "just some input components for angular2",
   "main": "index.ts",
   "license": "MIT",
-  "angular-cli": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/empirefox/ng2-ef-inputs.git"
@@ -38,10 +37,10 @@
     "copy": "cpx package.json src/app"
   },
   "dependencies": {
-    "@angular/common": ">=2.0.0",
-    "@angular/core": ">=2.0.0",
-    "@angular/forms": ">=2.0.0",
-    "@angular/http": ">=2.0.0",
+    "@angular/common": "^2.1.1 || >=4.0.0",
+    "@angular/core": "^2.1.1 || >=4.0.0",
+    "@angular/forms": "^2.1.1 || >=4.0.0",
+    "@angular/http": "^2.1.1 || >=4.0.0",
     "@types/countdown": "0.0.5",
     "@types/markdown-it": "0.0.2",
     "angular2-modal": "^2.0.3",
@@ -69,11 +68,11 @@
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",
-    "@angular/compiler": ">=2.0.0",
-    "@angular/compiler-cli": ">=2.0.0",
-    "@angular/platform-browser": ">=2.0.0",
-    "@angular/platform-browser-dynamic": ">=2.0.0",
-    "@angular/router": ">=2.0.0",
+    "@angular/compiler": "^2.1.1 || >=4.0.0",
+    "@angular/compiler-cli": "^2.1.1 || >=4.0.0",
+    "@angular/platform-browser": "^2.1.1 || >=4.0.0",
+    "@angular/platform-browser-dynamic": "^2.1.1 || >=4.0.0",
+    "@angular/router": "^3.1.1 || >=4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.68",
     "bootstrap": "^3.3.7",
