@@ -1,0 +1,12 @@
+<phone-input [(ngModel)]="value" required="true" [start]="start" placeholder="phone number here"></phone-input>
+
+<h4>with form</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h4>ngModel</h4>
+  <phone-input formControlName="value" [(ngModel)]="value" required="true" [start]="start" [payload]="payload"></phone-input>
+  <h4>readonly</h4>
+  <phone-input formControlName="value" [(ngModel)]="value" required="true" [start]="start" [readonly]="readonly"></phone-input>
+  <h4>id</h4><label [attr.for]="id">Click to Select</label>
+  <phone-input formControlName="value" [(ngModel)]="value" required="true" [start]="start" [id]="id"></phone-input>
+  <br/><button class="btn btn-default" type="submit">submit</button>
+</form>

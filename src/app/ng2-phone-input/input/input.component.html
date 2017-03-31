@@ -1,0 +1,7 @@
+<input [formControl]="input" [(ngModel)]="value" [attr.id]="id" [placeholder]="placeholder||''" [readonly]="readonly" (blur)="onBlur()"
+  type="text" />
+<countdown [style.display]="input.valid&&input.value&&!readonly?'inline-block':'none'" [units]="config.units||defaultUnits"
+  [key]="key" (started)="started=$event" (changed)="ts=$event">
+  <span *ngIf="started" class="countdown-timer">{{ts.seconds}}</span>
+  <a *ngIf="!started" (click)="onStart()" class="countdown-btn">{{start}}</a>
+</countdown>

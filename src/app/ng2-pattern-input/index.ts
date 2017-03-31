@@ -7,7 +7,8 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 // for standard export at bottom
 import { PatternWindowComponent, PatternInputComponent } from './components';
 import { SvgPatternDirective } from './directives';
-import { PatternsService, PatternService } from './services';
+import { PatternsService, PatternService, BasePattern } from './services';
+import { SVG_PATTERNS } from './services/token';
 
 // for manual imports
 export * from './components';
@@ -37,13 +38,14 @@ export * from './services';
   ],
 })
 export class Ng2SvgPatternInputModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(patterns: BasePattern[]): ModuleWithProviders {
     return {
       ngModule: Ng2SvgPatternInputModule,
       providers: [
         PatternsService,
         PatternService,
         { provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: [PatternWindowComponent], multi: true },
+        { provide: SVG_PATTERNS, useValue: patterns },
       ],
     };
   }

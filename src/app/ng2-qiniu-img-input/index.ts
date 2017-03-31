@@ -1,9 +1,11 @@
-import { NgModule, ModuleWithProviders, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
+import { NgModule, ModuleWithProviders, Type, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+
+import { IHttp } from '../common/http';
 
 // for standard export at bottom
 import { DropzoneDirective } from './directives/dropzone.directive';
@@ -14,9 +16,10 @@ import {
   QiniuIconsWindowComponent,
   QiniuImageInputComponent,
 } from './components';
-import { QiniuConfigService } from './services/qiniu-config';
+import { QiniuConfigService, QiniuConfig } from './services/qiniu-config';
 import { QiniuService } from './services/qiniu.service';
 import { QiniuImageService } from './services/qiniu-image.service';
+import { QINIU_CONFIGS, QINIU_HTTP } from './services/token';
 
 // for manual imports
 export * from './components';
@@ -56,7 +59,7 @@ export * from './services/qiniu-config';
   ],
 })
 export class Ng2QiniuImageInputModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(configs: QiniuConfig[], http?: Type<IHttp>): ModuleWithProviders {
     return {
       ngModule: Ng2QiniuImageInputModule,
       providers: [
@@ -64,6 +67,8 @@ export class Ng2QiniuImageInputModule {
         QiniuService,
         QiniuImageService,
         { provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: [QiniuIconsWindowComponent], multi: true },
+        { provide: QINIU_CONFIGS, useValue: configs },
+        { provide: QINIU_HTTP, useExisting: http || Http },
       ],
     };
   }

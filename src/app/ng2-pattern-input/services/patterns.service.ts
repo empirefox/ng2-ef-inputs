@@ -1,9 +1,8 @@
-import { Inject, Injectable, OpaqueToken } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 import { BasePattern } from './base-pattern';
 import { Pattern } from './pattern';
-
-export const SVG_PATTERNS = new OpaqueToken('svgPatterns');
+import { SVG_PATTERNS } from './token';
 
 @Injectable()
 export class PatternsService {

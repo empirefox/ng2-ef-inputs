@@ -1,23 +1,16 @@
-<h3>amap-input</h3>
-<app-amap-input></app-amap-input>
-
-<h3>bg-input</h3>
-<app-bg-input></app-bg-input>
-
-<h3>colorful-input</h3>
-<app-colorful-input></app-colorful-input>
-
-<h3>fa-input</h3>
-<app-fa-input></app-fa-input>
-
-<h3>pattern-input</h3>
-<app-pattern-input></app-pattern-input>
-
-<h3>qiniu-img-input</h3>
-<app-qiniu-img-input></app-qiniu-img-input>
-
-<h3>smd-input</h3>
-<app-smd-input></app-smd-input>
-
-<h3>trianglify-input</h3>
-<app-trianglify-input></app-trianglify-input>
+<div class="row">
+  <nav class="col-sm-2">
+    <a routerLink="/amap-input" routerLinkActive="active">amap-input</a>
+    <a routerLink="/bg-input" routerLinkActive="active">bg-input</a>
+    <a routerLink="/colorful-input" routerLinkActive="active">colorful-input</a>
+    <a routerLink="/fa-input" routerLinkActive="active">fa-input</a>
+    <a routerLink="/pattern-input" routerLinkActive="active">pattern-input</a>
+    <a routerLink="/phone-input" routerLinkActive="active">phone-input</a>
+    <a routerLink="/qiniu-img-input" routerLinkActive="active">qiniu-img-input</a>
+    <a routerLink="/smd-input" routerLinkActive="active">smd-input</a>
+    <a routerLink="/trianglify-input" routerLinkActive="active">trianglify-input</a>
+  </nav>
+  <div class="col-sm-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -8,7 +8,8 @@ import { ButtonsModule } from 'ng2-bootstrap/buttons';
 
 // for standard export at bottom
 import { FaWindowComponent, FaComponent, FaInputComponent } from './components';
-import { FaNamesService, FaSelectService } from './services';
+import { FaNamesService, FaSelectService, FaNamesSource } from './services';
+import { FA_NAMES_SRC } from './services/token';
 
 // for manual imports
 export * from './components';
@@ -41,13 +42,14 @@ export * from './services';
   ],
 })
 export class Ng2FaInputModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(src: FaNamesSource): ModuleWithProviders {
     return {
       ngModule: Ng2FaInputModule,
       providers: [
         FaNamesService,
         FaSelectService,
         { provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: [FaWindowComponent], multi: true },
+        { provide: FA_NAMES_SRC, useValue: src },
       ],
     };
   }

@@ -1,6 +1,6 @@
 import { Ng2EfInputsPage } from './app.po';
 
-describe('ng2-ef-inputs App', function() {
+describe('ng2-ef-inputs App', () => {
   let page: Ng2EfInputsPage;
 
   beforeEach(() => {

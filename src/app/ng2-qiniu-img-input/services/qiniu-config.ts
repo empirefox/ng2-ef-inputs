@@ -2,46 +2,10 @@ import { Inject, Injectable, OpaqueToken, Optional } from '@angular/core';
 import { Http, Request, RequestOptionsArgs, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+import { IHttp } from '../../common/http';
 import { Item } from './item';
 import { Uptoken } from './uptoken';
-
-export interface IHttp {
-  /**
-   * Performs any type of http request. First argument is required, and can either be a url or
-   * a {@link Request} instance. If the first argument is a url, an optional {@link RequestOptions}
-   * object can be provided as the 2nd argument. The options object will be merged with the values
-   * of {@link BaseRequestOptions} before performing the request.
-   */
-  request(url: string | Request, options?: RequestOptionsArgs): Observable<Response>;
-  /**
-   * Performs a request with `get` http method.
-   */
-  get(url: string, options?: RequestOptionsArgs): Observable<Response>;
-  /**
-   * Performs a request with `post` http method.
-   */
-  post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;
-  /**
-   * Performs a request with `put` http method.
-   */
-  put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;
-  /**
-   * Performs a request with `delete` http method.
-   */
-  delete(url: string, options?: RequestOptionsArgs): Observable<Response>;
-  /**
-   * Performs a request with `patch` http method.
-   */
-  patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;
-  /**
-   * Performs a request with `head` http method.
-   */
-  head(url: string, options?: RequestOptionsArgs): Observable<Response>;
-  /**
-   * Performs a request with `options` http method.
-   */
-  options(url: string, options?: RequestOptionsArgs): Observable<Response>;
-}
+import { QINIU_CONFIGS, QINIU_HTTP } from './token';
 
 export interface QiniuConfig {
   name: string;
@@ -88,7 +52,7 @@ export class Config {
     this.listUrl = config.listUrl;
     this.deleteUrl = config.deleteUrl;
 
-    let { uptoken, list, delete: del} = config;
+    let { uptoken, list, delete: del } = config;
 
     if (uptoken) {
       this.uptoken = (key?: string) => { return uptoken(this.http, key); };
@@ -102,12 +66,12 @@ export class Config {
   }
 
   url(key: string, hash?: string): string {
-    hash = hash ? `?v=${hash.slice(0,4)}` : '';
+    hash = hash ? `?v=${hash.slice(0, 4)}` : '';
     return `${this.bucketDomain}${key}${hash}`;
   }
 
   styledUrl(key: string, hash?: string): string {
-    hash = hash ? `?v=${hash.slice(0,4)}` : '';
+    hash = hash ? `?v=${hash.slice(0, 4)}` : '';
     return `${this.bucketDomain}${key}${this.thumbnailStyle}${hash}`;
   }
 
@@ -123,9 +87,6 @@ export class Config {
     return !!(this.delete || this.deleteUrl);
   }
 }
-
-export const QINIU_CONFIGS = new OpaqueToken('QiniuConfigs'); // QiniuConfig[]
-export const QINIU_HTTP = new OpaqueToken('QiniuHttp'); // IHttp
 
 @Injectable()
 export class QiniuConfigService {

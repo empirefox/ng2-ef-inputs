@@ -1,12 +1,11 @@
-import { Injectable, Inject, OpaqueToken } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/publishReplay';
 import { extractNamesFromCss } from 'fa-tool';
 import { FaNamesSource } from './fa-names-source';
-
-export const FA_NAMES_SRC = new OpaqueToken('fa-names');
+import { FA_NAMES_SRC } from './token';
 
 @Injectable()
 export class FaNamesService {
